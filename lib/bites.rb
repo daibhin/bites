@@ -1,5 +1,5 @@
 require "bites/version"
+require 'bites/engine'
 
 module Bites
-  require 'bites/railtie' if defined?(Rails)
 end

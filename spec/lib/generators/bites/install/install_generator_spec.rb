@@ -1,5 +1,4 @@
 require 'generator_spec'
-# require 'generators/bites/install/install_generator'
 
 module Bites
   module Generators

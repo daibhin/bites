@@ -1,0 +1,2 @@
+class Bite < ApplicationRecord
+end

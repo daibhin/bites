@@ -5,7 +5,7 @@ class CreateBites < ActiveRecord::Migration
       t.text :text, null: false, default: ""
     end
 
-    add_index :users, :identifier, unique: true
+    add_index :bites, :identifier, unique: true
   end
 
   def down

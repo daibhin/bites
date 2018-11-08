@@ -18,10 +18,6 @@ module Bites
       def copy_migrations
         migration_template("create_bites.rb", "db/migrate/create_bites.rb")
       end
-
-      def generate_model
-        invoke "active_record:model", ['Bite'], migration: false
-      end
     end
   end
 end

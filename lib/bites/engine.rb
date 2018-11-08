@@ -1,11 +1,10 @@
 require 'bites/bite_helper'
 
 module Bites
-  class Railtie < Rails::Railtie
+  class Engine < Rails::Engine
 
-    initializer 'bite.helper' do |_app|
+    initializer 'bite.helper' do |app|
       ActionView::Base.send :include, BiteHelper
     end
-
   end
 end
