@@ -1,8 +1,8 @@
 # Bites
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bites`. To experiment with that code, run `bin/console` for an interactive prompt.
+> Content changes shouldn't require PRs.
 
-TODO: Delete this and the text above, and describe your gem
+Bites are a simple way of allowing anyone with the correct authorization to edit content from right within your webpage. Engineers shouldn't be the only ones capable of making copy changes, clients or non technical teammembers should be equally able.
 
 ## Installation
 
@@ -14,15 +14,44 @@ gem 'bites'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
-Or install it yourself as:
+Once you've installed the gem you need to run
 
-    $ gem install bites
+    $ rails generate bites:install
+
+This includes a migration so you will also need to run `rails db:migrate`
 
 ## Usage
 
-TODO: Write usage instructions here
+Bites offers a simple template helper that inserts your content into the webpage
+
+```ruby
+<%= text_bite :text_identifier, default: 'This is some default text' %>
+```
+
+All you need to provide is an identifier symbol (e.g. `:homepage_welcome_text`).
+The default text is also used as the initial value.
+
+If you want to allow editing of the bite you must include the `Biteable` helper in the associated controller:
+
+```ruby
+class StaticPagesController < ApplicationController
+  include Biteable
+
+  def index
+  end
+end
+```
+
+Appending `edit_page=true` as a query param to the URL will enter the page into edit mode (where bites are replaced with text boxes).
+
+Edit ability is protected using HTTP simple auth. You must specify a username and password as environment variables:
+
+    BITES_USERNAME
+    BITES_PASSWORD
+
+I recommend using something like [dotenv](https://github.com/bkeepers/dotenv) for this.
 
 ## Development
 
@@ -32,7 +61,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bites. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/daibhin/bites. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +69,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the Bites project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/bites/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Bites project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/daibhin/bites/blob/master/CODE_OF_CONDUCT.md).
