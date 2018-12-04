@@ -8,7 +8,7 @@ module Biteable
   def authenticate
     if request.params[:edit_page]
       authenticate_or_request_with_http_basic('Administration') do |username, password|
-        @bite_authentication = true
+        @bite_authentication = username == ENV['BITE_USERNAME'] && password == ENV['BITE_PASSWORD']
       end
     else
       @bite_authentication = false
