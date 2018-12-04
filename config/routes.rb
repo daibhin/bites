@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resource :bite, only: [:update]
+  resources :bites, only: [:update]
 end

@@ -3,6 +3,9 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "bites/version"
 
+# Building a new version of the gem:
+# gem build bites.gemspec
+
 Gem::Specification.new do |spec|
   spec.name          = "bites"
   spec.version       = Bites::VERSION
